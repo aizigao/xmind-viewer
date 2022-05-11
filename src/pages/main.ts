@@ -40,6 +40,8 @@ const main = () => {
     }
 
     const renderer = new SnowbrushRenderer(data);
+    console.log({ renderer });
+
     renderer.render();
     const rendererBounds = renderer.bounds;
 
@@ -51,14 +53,14 @@ const main = () => {
     const rendererContainer = document.createElement('div');
     rendererContainer.setAttribute(
       'style',
-      `width: ${width * 2}; height: ${height * 2}; position: relative;`,
+      `width: ${width}px; height: ${height}px; position: relative;`,
     );
     rendererContainer.className = 'sheet-container';
     renderer.svg.addTo(rendererContainer);
     rendererContainer.style.backgroundColor = renderer.svg.node.style.backgroundColor;
     container.append(rendererContainer);
 
-    renderer.transform(width + rendererBounds.x, height + rendererBounds.y);
+    renderer.transform(rendererBounds.x, height + rendererBounds.y);
     container.scrollTo(width - clientWidth / 2, height - clientHeight / 2);
   }
 };
